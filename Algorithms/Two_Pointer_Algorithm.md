@@ -1,61 +1,68 @@
-# Two Pointer Algorithm
+# Intuition:
+The intuition behind the Two Pointer Algorithm is based on the idea that instead of checking all possible pairs (which takes O(n²)), we can use two pointers to intelligently reduce the search space and find the solution in a single pass.
 
-## Intuition:
-The intuition behind the Two Pointer Algorithm is to use two indices (pointers) to traverse a data structure efficiently by reducing unnecessary iterations.
+By moving the pointers based on certain conditions, we eliminate unnecessary comparisons and reach the result efficiently.
 
-Instead of using nested loops (O(n²)), two pointers help solve problems in linear time (O(n)) by moving from different directions or at different speeds.
+# Explanation:
 
----
-
-## Explanation:
-
-### Algorithm:
+## Algorithm:
 
 - Initialize two pointers:
-  - `left` → start of the array (index 0)
-  - `right` → end of the array (index n-1)
+  - left at the beginning (index 0)
+  - right at the end (index n-1)
 
-- Iterate while `left < right`:
-  - If condition is satisfied → process result
-  - Else move pointers:
-    - Increment `left` → move forward
-    - Decrement `right` → move backward
+- Iterate while left < right:
+  a. Check the condition based on the problem (e.g., sum, comparison, etc.)  
+  b. If the condition is satisfied, return or store the result  
+  c. If the current state is less than required, move left pointer forward  
+  d. If the current state is greater than required, move right pointer backward  
 
-- Stop when `left >= right`
-
----
+- Continue this process until left >= right
 
 ## Explanation:
 
-The algorithm works by narrowing down the search space:
+The algorithm starts by placing two pointers at opposite ends of the array.
 
-- If the current condition requires a larger value → move `left` forward
-- If the current condition requires a smaller value → move `right` backward
-- Each step reduces the number of elements to check
+As it iterates, it evaluates the condition using the elements at both pointers:
 
-This avoids re-checking elements and improves efficiency.
+a. If the current elements satisfy the condition (for example, their sum equals the target), the solution is found.  
 
----
+b. If the result is smaller than required, it means we need a larger value. Since the array is sorted, we move the left pointer forward to increase the value.  
 
-## Explanation of Correctness:
+c. If the result is greater than required, it means we need a smaller value. So, we move the right pointer backward to decrease the value.  
 
-The algorithm works because:
+Each movement helps in reducing the number of elements to be checked, effectively shrinking the search space.
 
-- It eliminates unnecessary comparisons
-- Each movement reduces the search space
-- Every element is processed at most once
+The algorithm continues this process until both pointers meet.
 
----
+# Explanation of Correctness:
 
-## Time Complexity:
-- O(n)
+The algorithm works on the basis that the array is sorted.
 
-## Space Complexity:
-- O(1)
+This property guarantees that:
 
----
+- Moving the left pointer forward increases the value  
+- Moving the right pointer backward decreases the value  
 
-## Code (Example: Pair with Target Sum in Sorted Array)
+This ensures that no possible valid pair is skipped, and every step moves closer to the solution.
+
+Let's consider two cases:
+
+## If a valid pair exists:
+
+The pointers will eventually meet at the correct pair because the search space is reduced systematically based on comparisons.
+
+## If no valid pair exists:
+
+The pointers will cross each other, indicating that all possible pairs have been checked.
+
+In both cases, the algorithm correctly determines the result.
+
+The time complexity of the Two Pointer Algorithm is O(n) since each element is visited at most once.
+
+This approach is efficient compared to nested loops as it avoids redundant comparisons and utilizes the sorted nature of the array.
+
+# Code
 
 ```java
 class Solution {
